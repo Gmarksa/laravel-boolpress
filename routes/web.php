@@ -13,11 +13,14 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+/* Guest Routes */
+
 Route::get('/', "PageController@index");
+Route::resource("posts", PageController::class)->only(['index','show']);
 
 Auth::routes();
 
-Route::resource("posts", PageController::class);
+/* Admin Routes */
 
 Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->group(function(){
     Route::get('/', 'HomeController@index')->name('dashboard');

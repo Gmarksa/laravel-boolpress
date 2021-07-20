@@ -20,7 +20,7 @@
                         <h4 class="card-title" style="min-height: 50px;">{{ $post->title }}</h4>
                         <span>By: <a href="#">{{ $post->author }}</a></span>
                         <p class="card-text" style="min-height: 90px;">{{ $post->text }}</p>
-                        <a href="#!" class="btn btn-primary">Read</a>
+                        <a hreF="{{ route("posts.show", $post->id) }}" class="btn btn-primary">Read</a>
                     </div>
                 </div>
             </div>
