@@ -28,4 +28,7 @@
         </div>
         
     </section>
+
+    @include ('partials.pagination')
+    
 @endsection 
