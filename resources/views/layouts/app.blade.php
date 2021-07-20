@@ -72,8 +72,57 @@
             </div>
         </nav>
 
-        <main class="py-4">
-            @yield('content')
+        <!--Main layout-->
+        <main class="my-5">
+            <div class="container">
+                <!--Section: Content-->
+                <section class="text-center">
+                    <h4 class="mb-5"><strong>Latest posts</strong></h4>
+                    
+                    <div class="row">
+                        @foreach($posts as $post)
+                        <div class="col-lg-4 col-md-12 mb-4">
+                            <div class="card" style="height: 31rem;">
+                                <div class="bg-image hover-overlay ripple" data-mdb-ripple-color="light">
+                                    <img src="https://via.placeholder.com/348x232" class="img-fluid" />
+                                    <a href="#!">
+                                    <div class="mask" style="background-color: rgba(251, 251, 251, 0.15);"></div>
+                                    </a>
+                                </div>
+
+                                <div class="card-body">
+                                    <h4 class="card-title" style="min-height: 50px;">{{ $post->title }}</h4>
+                                    <span>By: <a href="#">{{ $post->author }}</a></span>
+                                    <p class="card-text" style="min-height: 90px;">{{ $post->text }}</p>
+                                    <a href="#!" class="btn btn-primary">Read</a>
+                                </div>
+                            </div>
+                        </div>
+                        @endforeach 
+                    </div>
+           
+                    
+
+                    
+                </section>
+
+                <!-- Pagination -->
+                <nav class="my-4" aria-label="...">
+                    <ul class="pagination pagination-circle justify-content-center">
+                    <li class="page-item">
+                        <a class="page-link" href="#" tabindex="-1" aria-disabled="true">Previous</a>
+                    </li>
+                    <li class="page-item active"><a class="page-link" href="#">1</a></li>
+                    <li class="page-item" aria-current="page">
+                        <a class="page-link" href="#">2 <span class="sr-only">(current)</span></a>
+                    </li>
+                    <li class="page-item">
+                        <a class="page-link" href="#">Next</a>
+                    </li>
+                    </ul>
+                </nav>
+
+            </div>
         </main>
     </div>
 </body>
