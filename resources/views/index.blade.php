@@ -3,8 +3,7 @@
 @section("content")
     <!--Section: Content-->
     <section class="text-center">
-        <h4 class="mb-5"><strong>Latest posts</strong></h4>
-        
+       
         <div class="row">
             @foreach($posts as $post)
             <div class="col-lg-4 col-md-12 mb-4">
@@ -17,9 +16,9 @@
                     </div>
 
                     <div class="card-body">
-                        <h4 class="card-title" style="min-height: 50px;">{{ $post->title }}</h4>
-                        <span>By: <a href="#">{{ $post->author }}</a></span>
-                        <p class="card-text" style="min-height: 90px;">{{ $post->text }}</p>
+                        <h4 class="card-title font-weight-bold" style="min-height: 50px;">{{ $post->title }}</h4>
+                        <span class="font-weight-bold">By: <a href="#">{{ $post->author }}</a></span>
+                        <p class="card-text mt-1" style="min-height: 90px;">{{ $post->text }}</p>
                         <a hreF="{{ route("posts.show", $post->id) }}" class="btn btn-primary w-100">Read</a>
                     </div>
                 </div>

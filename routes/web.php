@@ -15,8 +15,8 @@ use Illuminate\Support\Facades\Route;
 
 /* Guest Routes */
 
-Route::get('/', "PageController@index");
-Route::resource("posts", PageController::class)->only(['index','show']);
+Route::get('/', "PostController@index");
+Route::resource("posts", PostController::class)->only(['index','show']);
 
 Auth::routes();
 
