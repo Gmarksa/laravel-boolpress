@@ -2,6 +2,8 @@
 
 @section('content')
 
+<a href="posts/create" class="btn btn-dark mb-3">Create New Post</a>
+
 <table class="table table-striped">
   <thead>
     <tr>

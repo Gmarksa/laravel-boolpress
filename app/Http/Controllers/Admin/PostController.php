@@ -28,7 +28,7 @@ class PostController extends Controller
      */
     public function create()
     {
-        //
+       return view("admin.posts.create");
     }
 
     /**
@@ -39,7 +39,14 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        //
+        $post = new Post;
+
+        $post->title = $request->title;
+        $post->author = $request->author;
+        $post->text = $request->text;
+        $post->category = $request->category;
+
+        $post->save();
     }
 
     /**
