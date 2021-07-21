@@ -2,7 +2,7 @@
 
 @section("content")
 
-<h1 class="text-center">Create Post</h1>
+<h1 class="text-center">Edit Post</h1>
 
 @if($errors->any())
     <div class="container">
@@ -16,30 +16,31 @@
     </div>
 @endif
 
-<form action="{{ route("admin.posts.store") }}" method="POST">
+<form action="{{ route('admin.posts.update', $post->id) }}" method="POST">
     @csrf
+    @method("PUT")
 
     <div class="form-group">
         <label for="title" class="font-weight-bold">Title</label>
-        <input type="text" class="form-control" name="title" id="title" placeholder="Title">
+        <input type="text" class="form-control" name="title" id="title" value="{{ $post->title }}">
     </div>
 
     <div class="form-group">
         <label for="author" class="font-weight-bold">Author</label>
-        <input type="text" class="form-control" name="author" id="author" placeholder="Author">
+        <input type="text" class="form-control" name="author" id="author" value="{{ $post->author }}">
     </div>
 
     <div class="form-group">
         <label for="category" class="font-weight-bold">Category</label>
-        <input type="text" class="form-control" name="category" id="category" placeholder="Category">
+        <input type="text" class="form-control" name="category" id="category" value="{{ $post->category }}">
     </div>
 
     <div class="form-group">
         <label for="text" class="font-weight-bold">Text</label>
-        <textarea name="text" class="form-control" id="text" cols="30" rows="15" placeholder="Post text"></textarea>
+        <textarea name="text" class="form-control" id="text" cols="30" rows="15">{{ $post->text }}</textarea>
     </div>
 
-    <button type="submit" class="btn btn-dark">Create</button>
+    <button type="submit" class="btn btn-dark">Update</button>
 </form>
 
 @endsection

@@ -21,10 +21,23 @@
       <td>{{ $post->title }}</td>
       <td>{{ $post->author }}</td>
       <td>{{ $post->category }}</td>
-      <td><a href="#">View</a> | <a href="#">Edit</a> | <a href="#">Delete</a></td>
+      <td>
+        <div class="d-flex justify-content-between">
+          <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-dark mr-3"><i class="fas fa-edit"></i></a>
+          <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
+            @csrf
+            @method("DELETE")
+  
+            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+          </form>
+        </div>
+      </td>
     </tr>
     @endforeach 
   </tbody>
 </table>
+
+
+
 
 @endsection
