@@ -18,7 +18,7 @@
                     <div class="card-body">
                         <h4 class="card-title font-weight-bold" style="min-height: 50px;">{{ $post->title }}</h4>
                         <span class="font-weight-bold">By: <a href="#">{{ $post->author }}</a></span>
-                        <p class="card-text mt-1" style="min-height: 90px;">{{ $post->text }}</p>
+                        <p class="card-text mt-1" style="min-height: 90px;">{{Illuminate\Support\Str::of( $post->text )->limit(120)}}</p>
                         <a hreF="{{ route('posts.show', $post->id) }}" class="btn btn-primary w-100">Read</a>
                     </div>
                 </div>
