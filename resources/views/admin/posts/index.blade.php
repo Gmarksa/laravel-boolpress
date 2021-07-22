@@ -2,7 +2,7 @@
 
 @section('content')
 
-<a href="posts/create" class="btn btn-dark mb-3">Create New Post</a>
+<a href="{{ route('admin.posts.create') }}" class="btn btn-dark mb-3">Create New Post</a>
 
 <table class="table table-striped">
   <thead>
@@ -23,12 +23,13 @@
       <td>{{ $post->category }}</td>
       <td>
         <div class="d-flex justify-content-between">
-          <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-dark mr-3"><i class="fas fa-edit"></i></a>
+          <a href="{{ route('posts.show', $post->id) }}" target="_blank" class="btn btn-primary" data-toggle="tooltip" title="View Post"><i class="fas fa-eye"></i></a>
+          <a href="{{ route('admin.posts.edit', $post->id) }}" class="btn btn-dark" data-toggle="tooltip" title="Edit Post"><i class="fas fa-edit"></i></a>
           <form action="{{ route('admin.posts.destroy', $post->id) }}" method="POST">
             @csrf
             @method("DELETE")
   
-            <button type="submit" class="btn btn-danger"><i class="fas fa-trash"></i></button>
+            <button type="submit" class="btn btn-danger" data-toggle="tooltip" title="Delete Post"><i class="fas fa-trash"></i></button>
           </form>
         </div>
       </td>

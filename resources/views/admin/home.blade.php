@@ -25,7 +25,7 @@
 
                 <div class="card-body">
                     <div>
-                        <a href="admin/posts"><h4>Manage Posts</h4></a>
+                        <a href="{{ route('admin.posts.index') }}"><h4>Manage Posts</h4></a>
                     </div>
                 </div>
             </div>
