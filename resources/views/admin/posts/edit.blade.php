@@ -16,13 +16,19 @@
     </div>
 @endif
 
-<form action="{{ route('admin.posts.update', $post->id) }}" method="POST">
+<form action="{{ route('admin.posts.update', $post->id) }}" method="POST"  enctype="multipart/form-data">
     @csrf
     @method("PUT")
 
     <div class="form-group">
         <label for="title" class="font-weight-bold">Title</label>
         <input type="text" class="form-control" name="title" id="title" value="{{ $post->title }}">
+    </div>
+
+    <div class="form-group">
+        <label for="cover" class="d-block font-weight-bold">Replace Cover Image</label>
+        <img src="{{asset('storage/public/' . $post->cover)}}">
+        <input type="file" name="cover" id="cover">
     </div>
 
     <div class="form-group">

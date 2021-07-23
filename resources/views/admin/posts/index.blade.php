@@ -19,7 +19,7 @@
     @foreach($posts as $post)
     <tr>
       <th scope="row">{{ $post->id }}</th>
-      <td><img src="{{ $post->cover }}" style="width: 100px;"/></td>
+      <td><img src="{{asset('storage/public/' . $post->cover )}}" style="width: 100px;"></td>
       <td>{{ $post->title }}</td>
       <td>{{ $post->author }}</td>
       <td>{{ $post->category }}</td>

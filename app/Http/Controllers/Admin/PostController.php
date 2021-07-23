@@ -4,6 +4,7 @@ namespace App\Http\Controllers\Admin;
 
 use App\Http\Controllers\Controller;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Storage;
 
 use App\Post;
 
@@ -39,22 +40,20 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $validateData = $request->validate([
             'title'=>'required|min:5',
+            'cover'=>'required|image|max:500',
             'author'=>'required',
             'category'=> 'required',
             'text' => 'required|min:10'
         ]);
 
-        $post = new Post;
+        if(array_key_exists("cover", $validateData)) {
+            $img_path = Storage::put("uploads", $validateData["cover"]);
+            $validateData["cover"] = $img_path;
+        }
 
-        $post->title = $request->title;
-        $post->author = $request->author;
-        $post->category = $request->category;
-        $post->text = $request->text;
-
-        $post->save();
-
+        Post::create($validateData);
         return redirect()->route("admin.posts.index");
     }
 
@@ -89,16 +88,22 @@ class PostController extends Controller
      */
     public function update(Request $request, Post $post)
     {
-        $request->validate([
-            'title'=>'required|min:5',
-            'author'=>'required',
-            'category'=> 'required',
-            'text' => 'required|min:10'
+		$validateData = $request->validate([
+			'title'=>'required|min:5| max:255',
+			'cover'=>'required|image|max:500',
+			'author'=>'required',
+			'category'=> 'required',
+			'text' => 'required|min:10'
         ]);
+		
+        if(array_key_exists("cover", $validateData)) {
+            $img_path = Storage::put("uploads", $validateData["cover"]);
+            $validateData["cover"] = $img_path;
+        }
         
-        $post->update($request->all());
-
-        return redirect()->route("admin.posts.index");
+        $post->update($validateData);
+		
+        return redirect()->route('admin.posts.index');
     }
 
     /**
