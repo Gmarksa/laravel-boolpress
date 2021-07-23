@@ -17,6 +17,7 @@ class CreatePosts extends Migration
             $table->id();
 
             $table->string("title");
+            $table->string('cover');
             $table->text("text");
             $table->string("author");
             $table->string("category");

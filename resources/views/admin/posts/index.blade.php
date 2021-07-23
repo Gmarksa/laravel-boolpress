@@ -8,6 +8,7 @@
   <thead>
     <tr>
       <th scope="col">ID</th>
+      <th scope="col">Cover</th>
       <th scope="col">Title</th>
       <th scope="col">Author</th>
       <th scope="col">Category</th>
@@ -18,6 +19,7 @@
     @foreach($posts as $post)
     <tr>
       <th scope="row">{{ $post->id }}</th>
+      <td><img src="{{ $post->cover }}" style="width: 100px;"/></td>
       <td>{{ $post->title }}</td>
       <td>{{ $post->author }}</td>
       <td>{{ $post->category }}</td>
