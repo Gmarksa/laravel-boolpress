@@ -13,6 +13,9 @@ use Illuminate\Support\Facades\Route;
 |
 */
 
+Route::get('contacts', "PageController@contacts")->name('contacts');
+Route::post('contacts', "PageController@send")->name('contacts.send');
+
 /* Guest Routes */
 
 Route::get('/', "PostController@index");

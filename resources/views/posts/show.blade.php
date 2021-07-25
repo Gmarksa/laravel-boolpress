@@ -2,7 +2,7 @@
 
 @section("content")
 <h1>{{ $post->title }}</h1>
-<img src="{{asset('storage/' . $post->cover )}}"  class="img-fluid" alt="">
+<img src="{{asset('storage/public/' . $post->cover )}}"  class="img-fluid" alt="">
 
 <div class="mb-5">By: <a href="#">{{ $post->author }}</a> on {{ $post->created_at->format('d M Y') }}</div>
 
