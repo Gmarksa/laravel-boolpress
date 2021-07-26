@@ -25,7 +25,7 @@
             $newPost->cover = $faker->imageUrl(348, 232, null);
             $newPost->text = $faker->text();
             $newPost->author = $faker->name();
-            $newPost->category = $faker->words(1, true);
+            $newPost->category_id = $faker->numberBetween(1, 3);
 
             $newPost->save();
         }

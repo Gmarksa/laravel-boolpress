@@ -22,7 +22,7 @@
       <td><img src="{{asset('storage/public/' . $post->cover )}}" style="width: 100px;"></td>
       <td>{{ $post->title }}</td>
       <td>{{ $post->author }}</td>
-      <td>{{ $post->category }}</td>
+      <td>{{ $post->category->name }}</td>
       <td>
         <div class="d-flex justify-content-between">
           <a href="{{ route('posts.show', $post->id) }}" target="_blank" class="btn btn-primary" data-toggle="tooltip" title="View Post"><i class="fas fa-eye"></i></a>

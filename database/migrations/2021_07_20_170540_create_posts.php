@@ -20,7 +20,6 @@ class CreatePosts extends Migration
             $table->string('cover');
             $table->text("text");
             $table->string("author");
-            $table->string("category");
 
             $table->timestamps();
         });

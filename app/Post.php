@@ -8,7 +8,7 @@ class Post extends Model
 {
     protected $guarded = [''];
 
-    public function Category(): BelongsTo
+    public function Category()
     {
         return $this->belongsTo(Category::class);
     }
