@@ -7,6 +7,7 @@ use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Storage;
 
 use App\Post;
+use App\Category;
 
 class PostController extends Controller
 {
@@ -29,7 +30,9 @@ class PostController extends Controller
      */
     public function create()
     {
-       return view("admin.posts.create");
+       $categories = Category::all();
+
+       return view("admin.posts.create", compact('categories'));
     }
 
     /**
@@ -40,11 +43,13 @@ class PostController extends Controller
      */
     public function store(Request $request)
     {
+        // ddd($request->all());
+
         $validateData = $request->validate([
             'title'=>'required|min:5',
             'cover'=>'required|image|max:500',
             'author'=>'required',
-            'category'=> 'required',
+            'category_id'=> 'nullable|exists:categories,id',
             'text' => 'required|min:10'
         ]);
 
@@ -76,7 +81,9 @@ class PostController extends Controller
      */
     public function edit(Post $post)
     {
-        return view("admin.posts.edit", compact("post"));
+       $categories = Category::all();
+
+        return view("admin.posts.edit", compact('post', 'categories'));
     }
 
     /**
@@ -92,7 +99,7 @@ class PostController extends Controller
 			'title'=>'required|min:5| max:255',
 			'cover'=>'required|image|max:500',
 			'author'=>'required',
-			'category'=> 'required',
+            'category_id'=> 'nullable|exists:categories,id',
 			'text' => 'required|min:10'
         ]);
 		

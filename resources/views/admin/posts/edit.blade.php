@@ -36,9 +36,15 @@
         <input type="text" class="form-control" name="author" id="author" value="{{ $post->author }}">
     </div>
 
+    <!-- Category -->
     <div class="form-group">
-        <label for="category" class="font-weight-bold">Category</label>
-        <input type="text" class="form-control" name="category" id="category" value="{{ $post->category }}">
+        <label for="category_id" class="font-weight-bold">Category</label>
+        <select class="form-control" name="category_id" id="category_id">
+            <option value="" selected>Select Category</option>
+            @foreach($categories as $category)
+                <option value="{{$category->id}}" {{ $category->id  === old('category_id', $post->category_id) ? 'selected' : '' }}>{{$category->name}}</option>
+            @endforeach
+        </select>
     </div>
 
     <div class="form-group">

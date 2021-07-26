@@ -39,8 +39,13 @@
 
     <!-- Category -->
     <div class="form-group">
-        <label for="category" class="font-weight-bold">Category</label>
-        <input type="text" class="form-control" name="category" id="category" value="{{ old('category') }}" placeholder="Category">
+        <label for="category_id" class="font-weight-bold">Category</label>
+        <select  class="form-control" name="category_id" id="category_id">
+            <option value="" selected>Select Category</option>
+            @foreach($categories as $category)
+                <option value="{{$category->id}}">{{$category->name}}</option>
+            @endforeach
+        </select>
     </div>
 
     <!-- Post Text -->
