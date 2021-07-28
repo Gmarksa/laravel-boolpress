@@ -3,6 +3,7 @@
 namespace App;
 
 use Illuminate\Database\Eloquent\Model;
+use Illuminate\Database\Eloquent\Relations\BelongsToMany;
 
 class Post extends Model
 {
@@ -12,4 +13,10 @@ class Post extends Model
     {
         return $this->belongsTo(Category::class);
     }
+
+    public function Tags()
+    {
+        return $this->belongsToMany(Tag::class);
+    }
+
 }
