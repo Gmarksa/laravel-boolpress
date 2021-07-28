@@ -47,6 +47,19 @@
         </select>
     </div>
 
+    <!-- Tags -->
+    <div class="form-group">
+        <label for="tags" class="font-weight-bold">Tags</label>
+        <select multiple class="form-control" name="tags[]" id="tags">
+            <option value="" disabled>Select one or multiple tags</option>
+            @if($tags)
+                @foreach($tags as $tag)
+                    <option value="{{$tag->id}}" {{ $post->tags->contains($tag) ? 'selected' : ''}}>{{$tag->name}}</option>
+                @endforeach
+            @endif
+        </select>
+    </div>
+
     <div class="form-group">
         <label for="text" class="font-weight-bold">Text</label>
         <textarea name="text" class="form-control" id="text" cols="30" rows="15">{{ $post->text }}</textarea>

@@ -8,6 +8,7 @@ use Illuminate\Support\Facades\Storage;
 
 use App\Post;
 use App\Category;
+use App\Tag;
 
 class PostController extends Controller
 {
@@ -31,8 +32,9 @@ class PostController extends Controller
     public function create()
     {
        $categories = Category::all();
-
-       return view("admin.posts.create", compact('categories'));
+       $tags = Tag::all();
+        
+       return view("admin.posts.create", compact('categories', 'tags'));
     }
 
     /**
@@ -47,9 +49,10 @@ class PostController extends Controller
 
         $validateData = $request->validate([
             'title'=>'required|min:5',
-            'cover'=>'required|image|max:500',
+            'cover'=>'image|max:500',
             'author'=>'required',
             'category_id'=> 'nullable|exists:categories,id',
+            'tags' => 'nullable|exists:tags,id',
             'text' => 'required|min:10'
         ]);
 
@@ -58,7 +61,9 @@ class PostController extends Controller
             $validateData["cover"] = $img_path;
         }
 
-        Post::create($validateData);
+        $post = Post::create($validateData);
+        $post->tags()->attach($request->tags);
+
         return redirect()->route("admin.posts.index");
     }
 
@@ -82,8 +87,9 @@ class PostController extends Controller
     public function edit(Post $post)
     {
        $categories = Category::all();
+       $tags = Tag::all();
 
-        return view("admin.posts.edit", compact('post', 'categories'));
+        return view("admin.posts.edit", compact('post', 'categories', 'tags'));
     }
 
     /**
@@ -97,9 +103,10 @@ class PostController extends Controller
     {
 		$validateData = $request->validate([
 			'title'=>'required|min:5| max:255',
-			'cover'=>'required|image|max:500',
+			'cover'=>'image|max:500',
 			'author'=>'required',
             'category_id'=> 'nullable|exists:categories,id',
+            'tags' => 'exists:tags,id',
 			'text' => 'required|min:10'
         ]);
 		
@@ -109,6 +116,7 @@ class PostController extends Controller
         }
         
         $post->update($validateData);
+        $post->tags()->sync($request->tags);
 		
         return redirect()->route('admin.posts.index');
     }
