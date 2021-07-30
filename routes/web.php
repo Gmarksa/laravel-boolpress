@@ -29,3 +29,9 @@ Route::middleware('auth')->prefix('admin')->namespace('Admin')->name('admin.')->
     Route::get('/', 'HomeController@index')->name('dashboard');
     Route::resource('posts', PostController::class);
 });
+
+
+/* Vue */
+Route::get('vue-post', function() {
+    return view('vue-post');
+});
